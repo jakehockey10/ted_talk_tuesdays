@@ -5,7 +5,7 @@
   <script defer="defer">
       //constants
       //      var MAX_ANGULAR_VELOCITY = 360 * 5;
-      var MAX_ANGULAR_VELOCITY = 5000 * 5;
+      var MAX_ANGULAR_VELOCITY = 10000 * 5;
 
       var NUM_WEDGES = <%= @ted_talks.count %>;
       var WHEEL_RADIUS = 410;
@@ -158,6 +158,7 @@
 
       }
       function init() {
+          if (NUM_WEDGES == 0) { return; }
           stage = new Kinetic.Stage({
               container: 'container',
               width: 1500,

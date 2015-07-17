@@ -11,3 +11,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Rubymine.
+.idea
