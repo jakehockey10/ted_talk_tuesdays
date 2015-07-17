@@ -16,13 +16,13 @@
   <script defer="defer">
       //constants
       //      var MAX_ANGULAR_VELOCITY = 360 * 5;
-      var MAX_ANGULAR_VELOCITY = 10000 * 5;
+      var MAX_ANGULAR_VELOCITY = 1000 * 5;
 
       var NUM_WEDGES = <%= @ted_talks.count %>;
       var WHEEL_RADIUS = 410;
-      //      var ANGULAR_FRICTION = 0.2;
-      var ANGULAR_FRICTION = 0.000005;
+//      var ANGULAR_FRICTION = 0.2;
 
+      var ANGULAR_FRICTION = 0.005;
       // globals
       var angularVelocity = -MAX_ANGULAR_VELOCITY;
       var lastRotation = 0;
@@ -120,6 +120,17 @@
           });
 
           wedge.add(wedgeBackground);
+
+
+          var number = wedge.width() % 3;
+          if (name.length > number) {
+              var split = name.split(' ');
+              var index = Math.floor(split.length/2);
+              var word = split[index];
+              var position = [name.indexOf(word) + word.length];
+              name = [name.slice(0, position), '\n', name.slice(position)].join('');
+          }
+
 
           var text = new Kinetic.Text({
               text: name,
@@ -244,15 +255,11 @@
 
 //          document.getElementById('debug').appendChild(layer.hitCanvas._canvas);
 
-          // wait one second and then spin the wheel
-//          setTimeout(function () {
-//              anim.start();
-//          }, 1000);
-
-
-          $('#wheel-spinner').on('click', function () {
+//           wait one second and then spin the wheel
+          setTimeout(function () {
               anim.start();
-          })
+          }, 5000);
+
       }
       init();
 

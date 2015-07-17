@@ -7,7 +7,7 @@ class TedTalksController < ApplicationController
     else
       flash[:danger] = ted_talk.errors.full_messages.to_sentence
     end
-    redirect_to ted_talks_choose_path
+    redirect_to root_path
   end
 
   def destroy
