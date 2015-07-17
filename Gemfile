@@ -17,4 +17,16 @@ group :development, :test do
   gem 'spring'
 end
 
+group :test do
+  gem 'minitest-reporters'
+  gem 'mini_backtrace'
+  gem 'guard-minitest'
+  gem 'guard'
+end
+
+group :production do
+  gem 'rails_12factor'
+  gem 'puma'
+end
+
 gem 'ted_api'
