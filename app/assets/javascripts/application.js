@@ -13,5 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require kinetic-v5.0.1.min
+//= require bootstrap
+//= require bootstrap-material-design
 //= require turbolinks
 //= require_tree .

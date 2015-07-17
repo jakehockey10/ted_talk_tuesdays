@@ -5,7 +5,7 @@ class TedTalksController < ApplicationController
     if ted_talk.save
       flash[:success] = 'Ted Talk added to wheel!'
     else
-      flash[:danger] = 'Uh oh!  Something you did was not something this website expected :('
+      flash[:danger] = ted_talk.errors.full_messages.to_sentence
     end
     redirect_to ted_talks_choose_path
   end

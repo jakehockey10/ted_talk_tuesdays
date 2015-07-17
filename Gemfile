@@ -30,3 +30,5 @@ group :production do
 end
 
 gem 'ted_api'
+gem 'bootstrap-sass'
+gem 'bootstrap-material-design'

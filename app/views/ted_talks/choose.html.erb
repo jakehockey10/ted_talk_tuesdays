@@ -1,7 +1,18 @@
+<%= render 'ted_talks/add_talk_modal' %>
+
 <div class="row">
 
+  <ul class="command-btns">
+    <li class="command-btn">
+      <a href="#" class="btn btn-primary btn-fab btn-raised mdi-content-add pull-right" data-toggle="modal" data-target="#add-talk-modal"></a>
+    </li>
+    <li class="command-btn">
+      <a href="#" id="wheel-spinner" class="btn btn-primary btn-fab btn-raised mdi-av-replay pull-right"></a>
+    </li>
+  </ul>
+
   <div id="container"></div>
-  <div id="debug" style="position:relative"></div>
+  <!--<div id="debug" style="position:relative"></div>-->
   <script defer="defer">
       //constants
       //      var MAX_ANGULAR_VELOCITY = 360 * 5;
@@ -9,10 +20,11 @@
 
       var NUM_WEDGES = <%= @ted_talks.count %>;
       var WHEEL_RADIUS = 410;
-      var ANGULAR_FRICTION = 0.2;
+      //      var ANGULAR_FRICTION = 0.2;
+      var ANGULAR_FRICTION = 0.000005;
 
       // globals
-      var angularVelocity = 360;
+      var angularVelocity = -MAX_ANGULAR_VELOCITY;
       var lastRotation = 0;
       var controlled = false;
       var target, activeWedge, stage, layer, wheel,
@@ -155,13 +167,14 @@
           }
 
 
-
       }
       function init() {
-          if (NUM_WEDGES == 0) { return; }
+          if (NUM_WEDGES == 0) {
+              return;
+          }
           stage = new Kinetic.Stage({
               container: 'container',
-              width: 1500,
+              width: 1000,
               height: 1000
           });
           layer = new Kinetic.Layer();
@@ -229,23 +242,20 @@
 
           var anim = new Kinetic.Animation(animate, layer);
 
-          //document.getElementById('debug').appendChild(layer.hitCanvas._canvas);
+//          document.getElementById('debug').appendChild(layer.hitCanvas._canvas);
 
           // wait one second and then spin the wheel
-          setTimeout(function () {
+//          setTimeout(function () {
+//              anim.start();
+//          }, 1000);
+
+
+          $('#wheel-spinner').on('click', function () {
               anim.start();
-          }, 1000);
+          })
       }
       init();
 
   </script>
-  <aside>
-    <%= form_for(TedTalk.new) do |f| %>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-        <%= f.label :url %>
-        <%= f.text_field :url %>
-        <%= f.submit 'Add to wheel' %>
-    <% end %>
-  </aside>
+
 </div>
